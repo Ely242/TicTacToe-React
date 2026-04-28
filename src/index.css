@@ -64,6 +64,23 @@
   margin: 0;
 }
 
+.sound-toggle {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--accent-border);
+  background: color-mix(in srgb, var(--accent-bg) 75%, transparent);
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.sound-toggle:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
 .board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
