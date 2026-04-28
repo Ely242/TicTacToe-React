@@ -1,4 +1,3 @@
-import "./App.css";
 import { useRef, useState } from "react";
 import Board from "./Components/Board.tsx";
 import GameStatus from "./Components/GameStatus.tsx";
@@ -10,9 +9,13 @@ import {
 } from "./utils/gameLogic.ts";
 import ResetButton from "./Components/ResetButton.tsx";
 
+function getRandomStartingPlayer(): Player {
+	return (Math.floor(Math.random() * 2) === 0 ? "X" : "O") as Player;
+}
+
 function App() {
 	const [board, setBoard] = useState<SquareValue[]>(Array(9).fill(null));
-	const [currentPlayer, setCurrentPlayer] = useState<Player>("X");
+	const [currentPlayer, setCurrentPlayer] = useState<Player>(getRandomStartingPlayer());
 	const [winner, setWinner] = useState<Player | null>(null);
 	const [soundEnabled, setSoundEnabled] = useState(true);
 	const audioContextRef = useRef<AudioContext | null>(null);
@@ -152,7 +155,7 @@ function App() {
 				onReset={() => {
 					// we reset the board, player, and winner states
 					setBoard(Array(9).fill(null));
-					setCurrentPlayer("X");
+					setCurrentPlayer(getRandomStartingPlayer());
 					setWinner(null);
 					playResetSound();
 				}}
