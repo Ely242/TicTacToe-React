@@ -1,17 +1,16 @@
 import type { SquareValue } from "../utils/gameLogic.ts";
+import "../index.css";
 
 type SquareProps = {
 	value: SquareValue;
 	onClick: () => void;
 };
 
-export default function Square({ value, onClick  }: SquareProps) {
-    let squareClass = "square";
-    if (value === "X") {
-        squareClass += " x-square";
-    }
-    else if (value === "O") {
-        squareClass += " o-square";
-    }
-	return <button onClick={onClick} className={squareClass}>{value}</button>;
+export default function Square({ value, onClick }: SquareProps) {
+	const squareClass = `square ${value === "X" ? "x-square" : value === "O" ? "o-square" : ""}`;
+	return (
+		<button onClick={onClick} className={squareClass}>
+			{value}
+		</button>
+	);
 }

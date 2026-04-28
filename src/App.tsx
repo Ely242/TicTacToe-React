@@ -14,6 +14,8 @@ function App() {
 	const [board, setBoard] = useState<SquareValue[]>(Array(9).fill(null));
 	const [currentPlayer, setCurrentPlayer] = useState<Player>("X");
 	const [winner, setWinner] = useState<Player | null>(null);
+	const draw = isDraw(board);
+	const gameStateClass = winner ? "state-win" : draw ? "state-draw" : "state-playing";
 
 	function handleSquareClick(index: number) {
 		if (board[index] || winner) {
@@ -35,7 +37,8 @@ function App() {
 	}
 
 	return (
-		<>
+		<div className={`game-shell ${gameStateClass}`}>
+			<h1 id="game-title">Tic Tac Toe</h1>
 			<Board
 				board={board}
 				onSquareClick={handleSquareClick}
@@ -43,7 +46,7 @@ function App() {
 			<GameStatus
 				currentPlayer={currentPlayer}
 				winner={winner}
-				isDraw={isDraw(board)}
+				isDraw={draw}
 			/>
 			<ResetButton
 				onReset={() => {
@@ -55,7 +58,7 @@ function App() {
 			>
 				Reset
 			</ResetButton>
-		</>
+		</div>
 	);
 }
 
