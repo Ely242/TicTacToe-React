@@ -6,7 +6,7 @@ type GameStatusProps = {
 	isDraw: boolean;
 };
 
-export default function GameStatus({ currentPlayer, winner, isDraw, ...rest }: GameStatusProps) {
+export default function GameStatus({ currentPlayer, winner, isDraw }: GameStatusProps) {
 	let status: string;
     let statusClass: string;
 
@@ -23,5 +23,5 @@ export default function GameStatus({ currentPlayer, winner, isDraw, ...rest }: G
         statusClass = "current-player";
 	}
 
-	return <div className={`game-status ${statusClass}`} {...rest}>{status}</div>;
+	return <div className={`game-status ${statusClass}`}>{status}</div>;
 }
